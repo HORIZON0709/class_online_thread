@@ -39,7 +39,7 @@ int main()
 	std::thread th(ThreadProc);
 
 	//ƒXƒŒƒbƒh‚ğØ‚è—£‚·
-	th.detach();
+	th.join();
 
 	//Enter“ü—Í‘Ò‚¿
 	printf("\n\n Press Enter");
