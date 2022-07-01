@@ -15,18 +15,18 @@
 //*******************************
 namespace
 {
-const int MAX_COUNT = 10;	//カウントの最大数
+const int MAX_COUNT = 5;	//カウントの最大数
 }//namespaceはここまで
 
 //=================================================
 //スレッドプロシージャ
 //=================================================
-void ThreadProc()
+void ThreadProc(const int &nMaxCnt, const int &nWaitMillSec)
 {
-	for (int i = 0; i < MAX_COUNT; i++)
+	for (int i = 0; i < nMaxCnt; i++)
 	{
 		printf("\n [ カウント : %d ]", i);	//表示
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+		std::this_thread::sleep_for(std::chrono::milliseconds(nWaitMillSec));
 	}
 }
 
@@ -36,13 +36,15 @@ void ThreadProc()
 int main()
 {
 	//スレッドの作成
-	std::thread th(ThreadProc);
+	std::thread th(ThreadProc,MAX_COUNT,1000);
+
+	//スレッドを切り離す
+	th.detach();
 
 	//スレッドの終了を待つ
-	th.join();
+	//th.join();
 
 	//Enter入力待ち
-	printf("\n\n Press Enter");
 	rewind(stdin);
 	getchar();
 
