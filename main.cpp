@@ -38,7 +38,7 @@ int main()
 	//スレッドの作成
 	std::thread th(ThreadProc);
 
-	//スレッドを切り離す
+	//スレッドの終了を待つ
 	th.join();
 
 	//Enter入力待ち
